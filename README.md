@@ -14,7 +14,7 @@ To detect malicious activity associated with a specific malware on our endpoint 
 
 <div>
 
-  ## Objectives:
+  ## Objectives
 * Detect malicious file hash from a random mix of file hashes using VirusTotal API
 
 * Research common IOC's associated with the malware
@@ -194,6 +194,7 @@ $registry_modification_value = "EnableLinkedConnections" nocase
 <p align="center">
 Ref 4: YARA rule to detect Medusa Locker Ransomware 
 </p>
+
 
 ## Lessons Learned
 * Thorough threat intelligence gathering is essential to crafting effective YARA rules that accurately detect malware without generating excessive false positives.
