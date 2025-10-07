@@ -1,21 +1,44 @@
-# Threat-Intelligence
-Malware detection - YARA
+# Malware detection - YARA
 
 Cyblack Threat Intelligence Task
 <div>
-  
-## Objectives:
-To detect malicious file hash through VirusTotal API from a-30 sample file hashes and conduct threat intelligence on the suspicious file_hash
-To create a YARA rule to detect activities associated with the detected malware.
+
+  ## Aim
+To detect malicious activity associated with a specific malware on our endpoint with YARA rule.
+</div>
+
+<div>
+
+  ## Objectives:
+* Detect malicious file hash from a random mix of file hashes through the VirusTotal API
+
+* Research common IOC's associated wit the malware
+
+* Create a YARA rule to detect IOC's associated with the detected malware.
+</div>
+
+## Tools Used
+<div>
+
+* Kali VM
+
+* VirusTotal
 </div>
 
 
 <div>
   
 ## Steps 
-Deployed kali Linux Virtual machine
-Installed python-3 and python-3 request
-Ran over 30 file hashes against Virustotal API using the python script below:
+* Deployed kali Linux Virtual machine
+* Set up an account on VirusTotal and obtained an API Key
+* Installed python-3 and python-3 request
+
+* Executed the python script below to scan over 30 file hashes on VirusTotal:
+  
+```
+nano check_hashes.py
+```
+  
 </div>
 
 
@@ -91,27 +114,42 @@ for index, file hash in enumerate(hashes):
 <p align="center">
 Ref 1: Python script for detecting malicious filehash
 </p>
+
+
+```
+python3 check_hashes.py
+```
+
 </div>
 
 
-
-
+## Scan Result
 
 <img width="1280" height="800" alt="VirtualBox_Kali Linux ARM64_20_09_2025_01_19_06" src="https://github.com/user-attachments/assets/843cf59e-68a5-4ac9-9f77-a8faa9f00d92" />
 
-## Ref 2: Malicious filehash detected
+<p align="center">
+Ref 2: Malicious filehash detected
+</p>
+ 
 
-File hash 1bc0575b3fc6486cb2510dac1ac6ae4889b94a955d3eade53d3ba3a92d133281 identified as malicious as reported by vendors with a confidence level of 63/72 (Very High)
-Conducted threat intelligence on the said file hash and it was found to be a ransomware called Medusa Blocker belonging to the Trojan family.
-Sequel to this, a YARA rule was created to detect malware on the host device.
+File hash {1bc0575b3fc6486cb2510dac1ac6ae4889b94a955d3eade53d3ba3a92d133281} identified as malicious as reported by vendors with a confidence level of 63/72 (Very High). Conducted threat intelligence on the said file hash and it was found to be a ransomware called Medusa Blocker belonging to the Trojan family.
 
+Using the IOC gathered from Threat intelligence, a YARA rule was created to detect the presence of this malware on the host device and across other devices on the local network.
 
-Detection & Prevention Strategies
-Like all malware, MedusaLocker can be detected on endpoints once they have gained initial access. Most effective detection strategy would be  SIEM investigation for the IOC’s of the malware including 
-Process creation using command line/powershell: Windows EventID 4688 or Sysmon ID 1
-Registry key creation and modification: Windows EventID and Sysmon 12,13, 14.
-What security controls can defend against it? 
-To check if an instance of MedusaLocker previously ran on the system it will create a Registry Key at HKEY_CURRENT_USER\Software\Medusa
+<div>
+  
+## Detection & Prevention Strategies
+
+### Detection
+Like all malwares, MedusaLocker can be detected on endpoints once they have gained initial access. Most effective detection strategy would be  SIEM investigation for some IOC’s of the malware including but not limited to:
+* Process creation using command line/powershell: Windows EventID 4688 or Sysmon ID 1
+* Any usage of LOLBins within the compromised hosts and other hosts on the network
+* File Creation, access, deletion and/or modification - Sysmon ID 11, 23
+* Registry key creation and modification: Windows EventID and Sysmon 12,13, 14 for any sign of persistence
+  
+ ### Prevention
+ 
+</div>
 
 <div>
 
@@ -148,6 +186,10 @@ $registry_modification_value = "EnableLinkedConnections" nocase
 ```
 
 </div>
+<p align="center">
 Ref 4: YARA rule to detect Medusa Locker Ransomware 
+</p>
 
+## Lesson Learned
 
+## Recommendations
