@@ -2,6 +2,11 @@
 
 Malware Detection & Threat Intelligence - Cyblack.org
 <div>
+  
+  ## Overview
+This project focuses on malware detection and threat intelligence using YARA rules and VirusTotal analysis to identify malicious activity on endpoints. By scanning over 30 file hashes through the VirusTotal API, the project identified a ransomware sample — Medusa Locker — with high confidence. Indicators of Compromise (IOCs) such as file hashes, registry entries, and suspicious file names were then used to craft a custom YARA rule for network-wide detection. Additionally, the project outlines effective detection strategies using SIEM and Sysmon event monitoring, as well as practical prevention measures to enhance endpoint security.
+</div>
+
 
   ## Aim
 To detect malicious activity associated with a specific malware on our endpoint with YARA rule.
@@ -190,6 +195,16 @@ $registry_modification_value = "EnableLinkedConnections" nocase
 Ref 4: YARA rule to detect Medusa Locker Ransomware 
 </p>
 
-## Lesson Learned
+## Lessons Learned
+* Thorough threat intelligence gathering is essential to crafting effective YARA rules that accurately detect malware without generating excessive false positives.
+
+* Leveraging platforms like VirusTotal can significantly speed up malware analysis and help validate suspicious files with high confidence.
+
+* System event monitoring (Sysmon - if available since not every organizations implement it, Powershell logs, Windows Event Logs, Defender logs, among others) plays a critical role in correlating indicators and detecting malicious activity across endpoints.
 
 ## Recommendations
+* Automate YARA scans across endpoints and integrate with SIEM solutions to enable real-time detection and faster incident response.
+
+* Regularly update YARA rules and IOC databases to keep up with evolving malware variants and new threat actor techniques.
+
+* Implement network-wide monitoring and alerting policies to ensure that once a single device is compromised, similar threats can be quickly detected elsewhere in the environment.
