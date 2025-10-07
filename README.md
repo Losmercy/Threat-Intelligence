@@ -1,4 +1,4 @@
-# Malware detection - YARA
+# Malware Detection - YARA
 
 Malware Detection & Threat Intelligence - Cyblack.org
 <div>
