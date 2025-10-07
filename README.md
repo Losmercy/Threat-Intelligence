@@ -1,6 +1,6 @@
 # Malware detection - YARA
 
-Cyblack Threat Intelligence Task
+Malware Detection & Threat Intelligence - Cyblack.org
 <div>
 
   ## Aim
