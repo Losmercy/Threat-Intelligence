@@ -37,7 +37,9 @@ To detect malicious activity associated with a specific malware on our endpoint 
 * Deployed kali Linux Virtual machine
 * Set up an account on VirusTotal and obtained an API Key
 * Installed python-3 and python-3 request
-
+```
+sudo apt update && sudo apt install python3-venv python3-requests -y
+```
 * Executed the python script below to scan over 30 file hashes on VirusTotal:
   
 ```
