@@ -206,7 +206,9 @@ Ref 4: YARA rule to detect Medusa Locker Ransomware
 * System event monitoring (Sysmon - if available since not every organizations implement it, Powershell logs, Windows Event Logs, Defender logs, among others) plays a critical role in correlating indicators and detecting malicious activity across endpoints.
 
 ## Recommendations
-* Automate YARA scans across endpoints and integrate with SIEM solutions to enable real-time detection and faster incident response.
+* Automate YARA scans across endpoints with regular IOC updates to keep up with evolving malware variants
+
+* integrate with SIEM solutions to enable real-time detection and faster incident response.
 
 * Regularly update YARA rules and IOC databases to keep up with evolving malware variants and new threat actor techniques.
 
