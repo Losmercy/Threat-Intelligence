@@ -176,7 +176,7 @@ rule Losmercy_Medusa_Locker_Ransomware_Detection {
  //SHA-256 Hash
     $file_hash = "1bc0575b3fc6486cb2510dac1ac6ae4889b94a955d3eade53d3ba3a92d133281"
  //Suspicious strings
-    $registry_entry = "HKCU\SOFTWARE\Medusa"
+    
     $filename1 = "medusa.exe" nocase
     $filename2 = "medusa2.exe" nocase
     $filename3 = "medusalocker.exe" nocase
@@ -186,8 +186,9 @@ rule Losmercy_Medusa_Locker_Ransomware_Detection {
     $imports = "crypt32.dll" nocase
     $imports = "kernel32.dll" nocase
  //Bahavioral Indicators
-    $registry_modification_key = "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System" nocase
-    $registry_modification_value = "EnableLinkedConnections" nocase
+    $registry_mod = "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System" nocase
+    $registry_mod = "HKCU\\SOFTWARE\\Medusa" nocase
+    $registry_mod = "EnableLinkedConnections" nocase
     $a = "mutex" nocase
  condition:
    any of them and filesize < 500KB and (pe.imphash() == "9f60a29044a8e334d03f8bd365c64f0d")
