@@ -10,9 +10,9 @@ To detect malicious activity associated with a specific malware on our endpoint 
 <div>
 
   ## Objectives:
-* Detect malicious file hash from a random mix of file hashes through the VirusTotal API
+* Detect malicious file hash from a random mix of file hashes using VirusTotal API
 
-* Research common IOC's associated wit the malware
+* Research common IOC's associated with the malware
 
 * Create a YARA rule to detect IOC's associated with the detected malware.
 </div>
@@ -132,7 +132,7 @@ Ref 2: Malicious filehash detected
 </p>
  
 
-File hash {1bc0575b3fc6486cb2510dac1ac6ae4889b94a955d3eade53d3ba3a92d133281} identified as malicious as reported by vendors with a confidence level of 63/72 (Very High). Conducted threat intelligence on the said file hash and it was found to be a ransomware called Medusa Blocker belonging to the Trojan family.
+File hash {1bc0575b3fc6486cb2510dac1ac6ae4889b94a955d3eade53d3ba3a92d133281} was reported to be  malicious by several vendors with a confidence level of 63/72 (Very High). Further conducted threat intelligence on the malicious file hash and it was found to be a ransomware called Medusa Blocker belonging to the Trojan family.
 
 Using the IOC gathered from Threat intelligence, a YARA rule was created to detect the presence of this malware on the host device and across other devices on the local network.
 
@@ -155,7 +155,7 @@ Like all malwares, MedusaLocker can be detected on endpoints once they have gain
 
   ## YARA Rule
 
-Created to detect Medusa Locker on our devices and associated devices within the network based on file_hash, suspicious strings, file characteristics and behavioral indicators where application. For this, the following YARA rule was created:
+Created to YARA rule to detect Medusa Locker on the compromised host and other hosts within the network based on the IOC's including file_hash, suspicious strings, file characteristics and behavioral indicators where application. For this, the following YARA rule was created:
 ```
 import "pe"
 rule Losmercy_Medusa_Locker_Ransomware_Detection {
