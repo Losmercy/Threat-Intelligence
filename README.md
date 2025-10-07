@@ -139,7 +139,7 @@ Ref 2: Malicious filehash detected
 </p>
  
 
-File hash {1bc0575b3fc6486cb2510dac1ac6ae4889b94a955d3eade53d3ba3a92d133281} was reported to be  malicious by several vendors with a confidence level of 63/72 (Very High). Further conducted threat intelligence on the malicious file hash and it was found to be a ransomware called Medusa Blocker belonging to the Trojan family.
+File hash {1bc0575b3fc6486cb2510dac1ac6ae4889b94a955d3eade53d3ba3a92d133281} was reported to be  malicious by several vendors with a confidence level of 63/72 (Very High).  Threat intelligence on the file further confimed this to be a ransomware called **MEDUSA LOCKER** belonging to the Trojan family.
 
 Using the IOC gathered from Threat intelligence, a YARA rule was created to detect the presence of this malware on the host device and across other devices on the local network.
 
@@ -148,14 +148,16 @@ Using the IOC gathered from Threat intelligence, a YARA rule was created to dete
 ## Detection & Prevention Strategies
 
 ### Detection
-Like all malwares, MedusaLocker can be detected on endpoints once they have gained initial access. Most effective detection strategy would be  SIEM investigation for some IOC’s of the malware including but not limited to:
-* Process creation using command line/powershell: Windows EventID 4688 or Sysmon ID 1
-* Any usage of LOLBins within the compromised hosts and other hosts on the network
-* File Creation, access, deletion and/or modification - Sysmon ID 11, 23
-* Registry key creation and modification: Windows EventID and Sysmon 12,13, 14 for any sign of persistence
+* Deploy YARA scanning on endpoints to detect strings associated with Medusa Locker based on certain conditions.
+* SIEM Investigation - Process creation using command line/powershell or other LOLBins on the host: Windows EventID 4688 or Sysmon ID 1
+* SIEM Investigation - File Creation, access, deletion and/or modification - Sysmon ID 11, 23
+* SIEM Investigation - Registry key creation and modification: Windows EventID and Sysmon 12,13, 14 for any sign of persistence
   
  ### Prevention
- 
+* Restrict use of LOLBins (e.g., PowerShell, cmd.exe)
+* Implement file reputation checks
+* Harden registry policies and monitor critical keys
+
 </div>
 
 <div>
@@ -203,13 +205,9 @@ Ref 4: YARA rule to detect Medusa Locker Ransomware
 
 * Leveraging platforms like VirusTotal can significantly speed up malware analysis and help validate suspicious files with high confidence.
 
-* System event monitoring (Sysmon - if available since not every organizations implement it, Powershell logs, Windows Event Logs, Defender logs, among others) plays a critical role in correlating indicators and detecting malicious activity across endpoints.
+* System event monitoring (Sysmon - if available since not every organizations implement it, Powershell logs, Windows Event Logs, Defender logs, among others) plays a critical role in correlating IOC's and detecting malicious activity across endpoints.
 
 ## Recommendations
 * Automate YARA scans across endpoints with regular IOC updates to keep up with evolving malware variants
 
-* integrate with SIEM solutions to enable real-time detection and faster incident response.
-
-* Regularly update YARA rules and IOC databases to keep up with evolving malware variants and new threat actor techniques.
-
-* Implement network-wide monitoring and alerting policies to ensure that once a single device is compromised, similar threats can be quickly detected elsewhere in the environment.
+* Integrate with SIEM solutions to enable real-time detection and faster incident response.
