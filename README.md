@@ -189,7 +189,7 @@ rule Losmercy_Medusa_Locker_Ransomware_Detection {
     $registry_mod = "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System" nocase
     $registry_mod = "HKCU\\SOFTWARE\\Medusa" nocase
     $registry_mod = "EnableLinkedConnections" nocase
-    $a = "mutex" nocase
+    $a = "mutex"
  condition:
    any of them and filesize < 500KB and (pe.imphash() == "9f60a29044a8e334d03f8bd365c64f0d")
 }
