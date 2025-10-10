@@ -176,7 +176,6 @@ rule Losmercy_Medusa_Locker_Ransomware_Detection {
  //SHA-256 Hash
     $file_hash = "1bc0575b3fc6486cb2510dac1ac6ae4889b94a955d3eade53d3ba3a92d133281"
  //Suspicious strings
-    
     $filename1 = "medusa.exe" nocase
     $filename2 = "medusa2.exe" nocase
     $filename3 = "medusalocker.exe" nocase
